@@ -8,11 +8,10 @@ import './styles/styles.scss'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const store = configureStore()
-
 const jsx = (
-    <Provider store={store}>
-        <AppRouter />
-    </Provider>
+	<Provider store={store}>
+		<AppRouter />
+	</Provider>
 )
 
 const root = createRoot(document.getElementById('app'))
