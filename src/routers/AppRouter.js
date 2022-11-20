@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import DashboardPage from '../components/DashboardPage'
 import AddExpensePage from '../components/AddExpensePage'
 import EditExpensePage from '../components/EditExpensePage'
-import HelpPage from '../components/HelpPage'
 import NotFoundPage from '../components/NotFoundPage'
 import Header from '../components/Header'
 
