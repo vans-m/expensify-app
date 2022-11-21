@@ -7,5 +7,4 @@ test('Should render Header correctly', () => {
 	expect(getByText('Expensify')).toBeInTheDocument
 	expect(getByText('Dashboard')).toBeInTheDocument
 	expect(getByText('Create Expense')).toBeInTheDocument
-	expect(getByText('Help')).toBeInTheDocument
 })
