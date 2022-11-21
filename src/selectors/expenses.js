@@ -1,5 +1,4 @@
-// get visible expenses - expense selector
-export default (expenses, { text, sortBy, startDate, endDate }) => {
+const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
     return expenses.filter((expense) => {
         const startDateMatch = startDate ? isSameOrBefore(startDate, expense.createdAt) : true
         const endDateMatch = endDate ? isSameOrAfter(endDate, expense.createdAt) : true
@@ -24,3 +23,5 @@ const isSameOrBefore = (start, date) => {
 const isSameOrAfter = (end, date) => {
     return date <= end
 }
+
+export default getVisibleExpenses
