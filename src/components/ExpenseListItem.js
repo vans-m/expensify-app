@@ -10,7 +10,7 @@ const ExpenseListItem = ({ id, description, note, amount, createdAt }) => (
 			{<p>£{numeral(amount).format('0,0.00')}</p>}
 			{createdAt && (
 				<p>
-					{createdAt.toLocaleDateString('en-GB', {
+					{new Date(createdAt).toLocaleDateString('en-GB', {
 						year: 'numeric',
 						month: 'long',
 						day: 'numeric'

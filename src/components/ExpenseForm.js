@@ -6,7 +6,7 @@ const ExpenseForm = (props) => {
 		description: '',
 		note: '',
 		amount: '',
-		createdAt: new Date(),
+		createdAt: new Date().getTime(),
 		...props.expense
 	})
 	const [error, setError] = useState('')

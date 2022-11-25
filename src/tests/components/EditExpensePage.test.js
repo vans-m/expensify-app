@@ -6,6 +6,8 @@ import manageOnSubmit from '../../form-actions/manageOnSubmit'
 import manageOnRemove from '../../form-actions/manageOnRemove'
 import expenses from '../fixtures/expenses'
 
+jest.mock('firebase/database')
+
 jest.mock('../../form-actions/manageOnSubmit')
 jest.mock('../../form-actions/manageOnRemove')
 
@@ -21,7 +23,13 @@ describe('EditExpensePage', () => {
 		const { getByText, getByTestId } = render(<EditExpensePage expenses={expenses} dispatch={() => {}} />)
 		expect(getByText('Edit Expense')).toBeInTheDocument
 		await userEvent.click(getByTestId('submit'))
-		expect(manageOnSubmit).toHaveBeenCalledWith('edit', expect.any(Function), expect.any(Function), expenses[0], expenses[0].id)
+		expect(manageOnSubmit).toHaveBeenCalledWith(
+			'edit',
+			expect.any(Function),
+			expect.any(Function),
+			expenses[0],
+			expenses[0].id
+		)
 	})
 	test('Should call useNavigate when removing an expense', async () => {
 		const { getByTestId } = render(<EditExpensePage expenses={expenses} dispatch={() => {}} />)

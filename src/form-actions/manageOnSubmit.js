@@ -1,12 +1,12 @@
-import { addExpense, editExpense } from '../actions/expenses'
+import { startAddExpense, editExpense } from '../actions/expenses'
 
 const manageOnSubmit = (mode, dispatch, navigate, expense, id) => {
-    if (mode === 'add') {
-        dispatch(addExpense(expense))
-    } else if (mode === 'edit') {
-        dispatch(editExpense(id, expense))
-    }
-    navigate('/')
+	if (mode === 'add') {
+		dispatch(startAddExpense(expense))
+	} else if (mode === 'edit') {
+		dispatch(editExpense(id, expense))
+	}
+	navigate('/')
 }
 
 export default manageOnSubmit

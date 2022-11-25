@@ -1,8 +1,17 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const webpack = require('webpack')
+const dotenv = require('dotenv')
 
 module.exports = (env) => {
+	console.log(env)
 	const isProduction = env.production
+	const configPath = isProduction ? './.env.development' : './.env.development'
+	const envir = dotenv.config({ path: configPath }).parsed
+	const envKeys = Object.keys(envir).reduce((prev, next) => {
+		prev[next] = JSON.stringify(envir[next])
+		return prev
+	}, {})
 
 	return {
 		entry: './src/app.js',
@@ -11,7 +20,7 @@ module.exports = (env) => {
 			filename: 'bundle.js',
 			publicPath: '/dist/'
 		},
-		plugins: [new MiniCssExtractPlugin()],
+		plugins: [new MiniCssExtractPlugin(), new webpack.DefinePlugin(envKeys)],
 		module: {
 			rules: [
 				{

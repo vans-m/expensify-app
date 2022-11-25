@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event'
 import AddExpensePage from '../../components/AddExpensePage'
 import manageOnSubmit from '../../form-actions/manageOnSubmit'
 
+jest.mock('firebase/database')
 jest.mock('../../form-actions/manageOnSubmit.js')
 
 describe('AddExpensePage', () => {
@@ -15,7 +16,7 @@ describe('AddExpensePage', () => {
 		await userEvent.click(getByTestId('submit'))
 		expect(manageOnSubmit).toHaveBeenCalledWith('add', expect.any(Function), expect.any(Function), {
 			amount: 123,
-			createdAt: expect.any(Date),
+			createdAt: expect.any(Number),
 			description: 'rent',
 			note: ''
 		})
