@@ -4,11 +4,11 @@ import ExpenseListFilters from './ExpenseListFilters'
 import ExpenseSummary from './ExpenseSummary'
 
 const DashboardPage = () => (
-    <div>
-        <ExpenseListFilters />
-        <ExpenseSummary />
-        <ExpenseList />
-    </div>
+	<div>
+		<ExpenseListFilters />
+		<ExpenseSummary />
+		<ExpenseList />
+	</div>
 )
 
 export default DashboardPage

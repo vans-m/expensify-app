@@ -1,4 +1,4 @@
-import { startAddExpense } from '../../actions/expenses'
+import { startAddExpense, startEditExpense } from '../../actions/expenses'
 import manageOnSubmit from '../../form-actions/manageOnSubmit'
 import expenses from '../fixtures/expenses'
 
@@ -6,7 +6,7 @@ jest.mock('firebase/database')
 
 jest.mock('../../actions/expenses.js', () => ({
 	startAddExpense: jest.fn(), // use actual for all non-hook parts
-	editExpense: jest.fn().mockReturnValue({ type: 'EDIT_EXPENSE' })
+	startEditExpense: jest.fn()
 }))
 const dispatch = jest.fn()
 const navigate = jest.fn()
@@ -19,7 +19,7 @@ describe('manageOnSubmit', () => {
 	})
 	test('Should dispatch editExpense and navigate when editing expense', () => {
 		manageOnSubmit('edit', dispatch, navigate, expenses[1], expenses[1].id)
-		expect(dispatch).toHaveBeenCalledWith({ type: 'EDIT_EXPENSE' })
+		expect(dispatch).toHaveBeenCalledWith(startEditExpense(expenses[1].id, expenses[1]))
 		expect(navigate).toHaveBeenCalledWith('/')
 	})
 })

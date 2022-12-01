@@ -1,13 +1,19 @@
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
-import { addExpense, startAddExpense, removeExpense, editExpense } from '../../actions/expenses'
+import {
+	addExpense,
+	startAddExpense,
+	removeExpense,
+	editExpense,
+	setExpenses,
+	startSetExpenses
+} from '../../actions/expenses'
 import expenses from '../fixtures/expenses'
-import { ref, onValue, push } from 'firebase/database'
+import { ref, push } from 'firebase/database'
 
 jest.mock('firebase/database')
 jest.mock('firebase/database', () => ({
 	ref: jest.fn(),
 	push: jest.fn().mockResolvedValue(jest.fn()),
+	child: jest.fn(),
 	getDatabase: jest.fn()
 }))
 const dispatch = jest.fn()
@@ -57,6 +63,13 @@ describe('actions > expenses', () => {
 			const expense = { description: '', note: '', amount: 0, createdAt: 0 }
 			startAddExpense({})(dispatch)
 			expect(push).toHaveBeenCalledWith(ref(), expense)
+		})
+	})
+
+	describe('setExpenses', () => {
+		test('should setup set expense action object with data', () => {
+			const action = setExpenses(expenses)
+			expect(action).toEqual({ type: 'SET_EXPENSES', expenses })
 		})
 	})
 })

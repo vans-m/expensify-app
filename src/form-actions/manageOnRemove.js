@@ -1,7 +1,7 @@
-import { removeExpense } from "../actions/expenses"
+import { startRemoveExpense } from '../actions/expenses'
 
 const manageOnRemove = (dispatch, navigate, id) => {
-	dispatch(removeExpense(id))
+	dispatch(startRemoveExpense(id))
 	navigate('/')
 }
 
