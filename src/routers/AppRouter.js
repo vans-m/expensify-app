@@ -25,7 +25,7 @@ const LogoutRoutes = () => (
 const AppRouter = ({ user }) => (
 	<BrowserRouter>
 		{user && <Header />}
-		<div className="container">{!user ? <LogoutRoutes /> : <LoggedRoutes user={user} />}</div>
+		<div>{!user ? <LogoutRoutes /> : <LoggedRoutes user={user} />}</div>
 	</BrowserRouter>
 )
 

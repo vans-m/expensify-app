@@ -1,10 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
+input {
+    color: $dark-grey;
+}
+
 html {
     font-size: 62.5%;
 }
 
 body {
+    color: $dark-grey;
     font-family: Helvetica, Arial, sans-serif;
     font-size: $m-size;
+    line-height: 1.6;
 }
 
 button {
@@ -23,39 +33,4 @@ button:disabled {
 
 .active-link {
     font-weight: bold;
-}
-
-.filters-box {
-    padding: 2rem 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    & > div {
-        margin-right: 2rem;
-    }
-    .description-filter {
-        padding: 1rem;
-    }
-    select {
-        padding: 1rem;
-    }
-    .range-picker {
-        display: flex;
-        border: 1px solid gray;
-        padding: 1rem;
-        justify-content: space-between;
-        input {
-            border: 0 none;
-        }
-        .range-arrow {
-            font-size: 2rem;
-            line-height: 1.7rem;
-        }
-        .start-picker {
-            margin-right: 1rem;
-        }
-        .end-picker {
-            margin-left: 1rem;
-        }
-    }
 }

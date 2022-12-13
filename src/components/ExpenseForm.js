@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import DatePicker from 'react-datepicker'
 
-const ExpenseForm = (props) => {
+const ExpenseForm = ({ expense: expenseProp, onSubmit: onSubmitProp, onRemove }) => {
 	const [expense, setExpense] = useState({
-		description: '',
-		note: '',
-		amount: '',
-		createdAt: new Date().getTime(),
-		...props.expense
+		description: expenseProp?.description || '',
+		note: expenseProp?.note || '',
+		amount: expenseProp?.amount || '',
+		createdAt: expenseProp?.createdAt || new Date().getTime()
 	})
 	const [error, setError] = useState('')
 	const onDescriptionChange = (e) => {
@@ -35,27 +34,47 @@ const ExpenseForm = (props) => {
 			setError('Please provide description and amount.')
 		} else {
 			setError('')
-			props.onSubmit({
+			onSubmitProp({
 				...expense,
 				amount: parseFloat(expense.amount, 10)
 			})
 		}
 	}
 	return (
-		<div>
-			{error && <p data-testid="error-msg">{error}</p>}
-			<form onSubmit={onSubmit}>
-				<input type="text" placeholder="Description" autoFocus value={expense.description} onChange={onDescriptionChange} />
-				<input type="text" placeholder="Amount" value={expense.amount} onChange={onAmountChange} />
-				<DatePicker selected={expense.createdAt} onChange={onDateChange} dateFormat="dd/MM/yyyy" />
-				<textarea placeholder="Add a note for your expense (optional)" value={expense.note} onChange={onNoteChange} />
-				<button data-testid="submit" type="submit">
-					{props.expense && props.expense.id ? 'Edit Expense' : 'Add Expense'}
-				</button>
-				{props.expense && props.onRemove && (
-					<button data-testid="remove" type="button" onClick={props.onRemove}>
-						Remove
+		<div className="content-container">
+			<form className="form data-input" onSubmit={onSubmit}>
+				{error && (
+					<p className="form__error" data-testid="error-msg">
+						{error}
+					</p>
+				)}
+				<input
+					className="text-input"
+					type="text"
+					placeholder="Description"
+					autoFocus
+					value={expense.description}
+					onChange={onDescriptionChange}
+				/>
+				<input className="text-input" type="text" placeholder="Amount" value={expense.amount} onChange={onAmountChange} />
+				<DatePicker className="text-input" selected={expense.createdAt} onChange={onDateChange} dateFormat="dd/MM/yyyy" />
+				<textarea
+					className="textarea"
+					placeholder="Add a note for your expense (optional)"
+					value={expense.note}
+					onChange={onNoteChange}
+				/>
+				<div>
+					<button className="button" data-testid="submit" type="submit">
+						{expenseProp && expenseProp.id ? 'Save Expense' : 'Add Expense'}
 					</button>
+				</div>
+				{expenseProp && onRemove && (
+					<div>
+						<button className="button button--secondary" data-testid="remove" type="button" onClick={onRemove}>
+							Remove Expense
+						</button>
+					</div>
 				)}
 			</form>
 		</div>

@@ -3,22 +3,21 @@ import { NavLink } from 'react-router-dom'
 import numeral from 'numeral'
 
 const ExpenseListItem = ({ id, description, note, amount, createdAt }) => (
-	<div>
-		<NavLink data-testid="expense-element" to={`/edit/${id}`}>
-			{<h3>{description}</h3>}
-			{note && <p>Note: {note}</p>}
-			{<p>£{numeral(amount).format('0,0.00')}</p>}
+	<NavLink className="list-item" data-testid="expense-element" to={`/edit/${id}`}>
+		<div>
+			{<h3 className="list-item__title">{description}</h3>}
 			{createdAt && (
-				<p>
+				<span className="list-item__sub-title">
 					{new Date(createdAt).toLocaleDateString('en-GB', {
 						year: 'numeric',
 						month: 'long',
 						day: 'numeric'
 					})}
-				</p>
+				</span>
 			)}
-		</NavLink>
-	</div>
+		</div>
+		<div>{<h3 className="list-item__data">£{numeral(amount).format('0,0.00')}</h3>}</div>
+	</NavLink>
 )
 
 export default ExpenseListItem
