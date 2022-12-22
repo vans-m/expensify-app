@@ -4,12 +4,11 @@ import { unstable_batchedUpdates } from 'react-dom'
 import { Provider } from 'react-redux'
 import AppRouter from './routers/AppRouter'
 import configureStore from './store/configureStore'
+import LoadingPage from './components/LoadingPage'
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
-import 'react-datepicker/dist/react-datepicker.css'
 import './firebase/firebase'
 import 'redux-thunk'
-import { startSetExpenses } from './actions/expenses'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase/firebase'
 import { login, logout } from './actions/auth'
@@ -39,7 +38,7 @@ const App = () => {
 	}, [])
 
 	if (loading) {
-		return <div>Loading...</div>
+		return <LoadingPage />
 	}
 
 	return (

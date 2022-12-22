@@ -1,0 +1,24 @@
+.text-input {
+  border: 1px solid #cacccd;
+  height: 50px;
+  font-size: $font-size-l;
+  font-weight: 300;
+  padding: $s-size;
+  width: 100%
+}
+
+.select {
+  @extend .text-input;
+
+}
+
+.textarea {
+  @extend .text-input;
+  height: 10rem;
+}
+
+.data-input {
+  .react-datepicker__day--selected {
+      background-color: $blue;
+    }
+}
